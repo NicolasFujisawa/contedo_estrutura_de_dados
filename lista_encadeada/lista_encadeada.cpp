@@ -41,12 +41,13 @@ int main()
         case 1:
             list1->createNode(1);
             list1->createNode(2);
-            list2->createNode(3);
+            list1->createNode(3);
             list2->createNode(4);
-            cout << list1->valueAtIndex(8) << endl;
-            list1->concatList(list2->getHead());
-            cout << list1->valueAtIndex(8) << endl;
-            list1->display();
+            LinkedList::display(list1->getHead());
+            LinkedList::concatList(list2->getHead(), list1->getHead());
+            cout << "index 2: " << LinkedList::valueAtIndex(list1->getHead(), 2) << endl;
+            LinkedList::display(list1->getHead());
+            LinkedList::display(list2->getHead());
             break;
         case 2:
             

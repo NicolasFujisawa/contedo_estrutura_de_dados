@@ -13,8 +13,8 @@ private:
 public:
 	void list();
 	void createNode(int value);
-	int valueAtIndex(int index);
 	node* getHead();
-	void display();
-	void concatList(struct node* node);
+	static void display(node* head);
+	static void concatList(node* head1, node* head2);
+	static int valueAtIndex(node* head1, int index, int count = 0 );
 };
