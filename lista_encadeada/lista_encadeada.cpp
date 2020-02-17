@@ -19,10 +19,11 @@ int main()
 {
     //menu
     int option = -1;
-    int input, output;
+    //int input, output;
 
     //lista encadeada
-    LinkedList* list = new LinkedList{};
+    LinkedList* list1 = new LinkedList{};
+    LinkedList* list2 = new LinkedList{};
 
     while (option != 0)
     {
@@ -38,9 +39,14 @@ int main()
         switch (option)
         {
         case 1:
-            list->createNode(10);
-            list->createNode(12);
-            cout << list->valueAtIndex(1) << endl;
+            list1->createNode(1);
+            list1->createNode(2);
+            list2->createNode(3);
+            list2->createNode(4);
+            cout << list1->valueAtIndex(8) << endl;
+            list1->concatList(list2->getHead());
+            cout << list1->valueAtIndex(8) << endl;
+            list1->display();
             break;
         case 2:
             
