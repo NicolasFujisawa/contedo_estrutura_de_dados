@@ -12,7 +12,6 @@ using namespace std;
 
 4 - Faça uma função para intercalar duas listas encadeadas*/
 
-
 int main()
 {
     //menu
@@ -21,9 +20,10 @@ int main()
     while (option != 0)
     {
         cout << "=-=-=-Menu-=-=-=" << endl;
-        cout << ".1 Inverter um numero inteiro N. Ex: 123 - 321" << endl;
-        cout << ".2 Dado 'n', imprima ate 0 e em seguida volte a n" << endl;
-        cout << ".3 Inverter um vetor de numeros reais com 100 elementos" << endl;
+        cout << ".1 Faça uma função para concatenar duas listas encadeadas" << endl;
+        cout << ".2 Faça uma função para remover elementos repetidos de uma lista encadeada (apenas uma varredura)." << endl;
+        cout << ".3 Faça uma função que converta um vetor em lista encadeada (mantenha a ordem)" << endl;
+        cout << ".4 Faça uma função para intercalar duas listas encadeadas" << endl;
         cout << ".0 Sair" << endl;
 
         cin >> option;
