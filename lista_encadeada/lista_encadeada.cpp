@@ -18,7 +18,7 @@ using namespace std;
 int main()
 {
     //menu
-    int option = -1;
+    int option = -1, valor, index;
     //int input, output;
 
     //lista encadeada
@@ -28,10 +28,10 @@ int main()
     while (option != 0)
     {
         cout << "=-=-=-Menu-=-=-=" << endl;
-        cout << ".1 Faca uma funçao para concatenar duas listas encadeadas" << endl;
-        cout << ".2 Faca uma funcao para remover elementos repetidos de uma lista encadeada (apenas uma varredura)." << endl;
-        cout << ".3 Faca uma funcao que converta um vetor em lista encadeada (mantenha a ordem)" << endl;
-        cout << ".4 Faca uma funcao para intercalar duas listas encadeadas" << endl;
+        cout << ".1 push back valor" << endl;
+        cout << ".2 display" << endl;
+        cout << ".3 valor do index tal" << endl;
+        cout << ".4 insira valor no index tal" << endl;
         cout << ".0 Sair" << endl;
 
         cin >> option;
@@ -39,23 +39,24 @@ int main()
         switch (option)
         {
         case 1:
-            list1->createNode(1);
-            list1->createNode(2);
-            list1->createNode(3);
-            list2->createNode(4);
-            LinkedList::display(list1->getHead());
-            LinkedList::concatList(list2->getHead(), list1->getHead());
-            cout << "index 2: " << LinkedList::valueAtIndex(list1->getHead(), 2) << endl;
-            LinkedList::display(list1->getHead());
-            LinkedList::display(LinkedList::nodeAtIndex(list1->getHead(), 3));
+            cout << "digite valor: ";
+            cin >> valor;
+            list1->push_back_node(valor);
             break;
         case 2:
-            
+            LinkedList::display(list1->getHead());
             break;
         case 3:
-            
-
+            cout << "index: ";
+            cin >> index;
+            cout << LinkedList::valueAtIndex(list1->getHead(), index) << endl;
             break;
+        case 4:
+            cout << "valor:";
+            cin >> valor;
+            cout << "index:";
+            cin >> index;
+            LinkedList::insertAt(list1->getHead(), valor, index);
         default:
             break;
         }

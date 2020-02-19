@@ -10,24 +10,25 @@ void LinkedList::list() {
 
 /***********************************************/
 /*
-*   inicia um node se n estiver sido iniciado
+*   insere um node no ultimo local
 */
 /***********************************************/
-void LinkedList::createNode(int value){
+void LinkedList::push_back_node(int value) {
+    node* nod = new node;
+    nod->data = value;
+    nod->next = NULL;
 
-    node* tmp = new node;
-    tmp->data = value;
-    tmp->next = NULL;
-
-    if (head == NULL)
-    {
-        head = tmp;
-        tail = tmp;
+    if (head == NULL) {
+        head = nod;
     }
-    else
-    {
-        tail->next = tmp;
-        tail = tail->next;
+    else {
+        node* temp = head;
+
+        // percorre ate o temp chegar na ultima posicao
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = nod;
     }
 }
 
@@ -109,4 +110,33 @@ node* LinkedList::nodeAtIndex(node* head1, int index, int count) {
             return head1;
         }
     }
+}
+
+/***********************************************/
+/*
+*   insere valor antes do node com index passado
+*/
+/***********************************************/
+void LinkedList::insertAt(node* head, int value, int index) {
+    node* nod = new node;
+    nod->data = value;
+
+    for (int i = 0; i < index; i++) {
+
+        if (i + 1 == index) {
+            nod->next = head->next;
+            head->next = nod;
+        }
+
+        head = head->next;
+
+        if (head->next == NULL) {
+            break;
+        }
+    }
+
+    if (index == 0) {
+        nod->next = head;
+    }
+
 }
