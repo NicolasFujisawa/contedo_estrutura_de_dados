@@ -17,4 +17,5 @@ public:
 	static void display(node* head);
 	static void concatList(node* head1, node* head2);
 	static int valueAtIndex(node* head1, int index, int count = 0 );
+	static node* nodeAtIndex(node* head1, int index, int count = 0 );
 };

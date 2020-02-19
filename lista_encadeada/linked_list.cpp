@@ -14,16 +14,19 @@ void LinkedList::list() {
 */
 /***********************************************/
 void LinkedList::createNode(int value){
-    node* temp = new node;
-    temp->data = value;
-    temp->next = NULL;
 
-    if (head == NULL){
-        head = temp;
-        tail = temp;
+    node* tmp = new node;
+    tmp->data = value;
+    tmp->next = NULL;
+
+    if (head == NULL)
+    {
+        head = tmp;
+        tail = tmp;
     }
-    else{
-        tail->next = temp;
+    else
+    {
+        tail->next = tmp;
         tail = tail->next;
     }
 }
@@ -51,8 +54,10 @@ void LinkedList::display(node* head){
 */
 /***********************************************/
 void LinkedList::concatList(node *head1, node *head2){
+
     if (head1 != NULL && head2 != NULL)
     {
+        // procura a calda da lista
         if (head1->next == NULL) {
             head1->next = head2;
         }
@@ -71,10 +76,37 @@ int LinkedList::valueAtIndex(node* head1, int index, int count) {
     count++;
     if (head1 != NULL) {
         if (count <= index) {
-            return LinkedList::valueAtIndex(head1->next, index, count);
+            if (head1->next != NULL){
+                return LinkedList::valueAtIndex(head1->next, index, count);
+            }
+            else {
+                return head1->data;
+            }
         }
         else {
             return head1->data;
+        }
+    }
+}
+
+/***********************************************/
+/*
+*   retorna node do index
+*/
+/***********************************************/
+node* LinkedList::nodeAtIndex(node* head1, int index, int count) {
+    count++;
+    if (head1 != NULL) {
+        if (count <= index) {
+            if (head1->next != NULL) {
+                return LinkedList::nodeAtIndex(head1->next, index, count);
+            }
+            else {
+                return head1;
+            }
+        }
+        else {
+            return head1;
         }
     }
 }

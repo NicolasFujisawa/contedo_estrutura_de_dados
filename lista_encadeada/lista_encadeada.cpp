@@ -47,7 +47,7 @@ int main()
             LinkedList::concatList(list2->getHead(), list1->getHead());
             cout << "index 2: " << LinkedList::valueAtIndex(list1->getHead(), 2) << endl;
             LinkedList::display(list1->getHead());
-            LinkedList::display(list2->getHead());
+            LinkedList::display(LinkedList::nodeAtIndex(list1->getHead(), 3));
             break;
         case 2:
             
