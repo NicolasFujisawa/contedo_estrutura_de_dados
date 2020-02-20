@@ -138,5 +138,44 @@ void LinkedList::insertAt(node* head, int value, int index) {
     if (index == 0) {
         nod->next = head;
     }
+}
 
+/***********************************************/
+/*
+*   delete o endereco do index
+*/
+/***********************************************/
+void LinkedList::deleteAt(int index) {
+    try
+    {
+        node* del = head;
+
+        for (int i = 0; i < index; i++)
+        {
+            if (del->next != NULL) {
+                del = del->next;
+            }
+            else {
+                return;
+            }
+        }
+        if (del->next != NULL) {
+            if(del->next->next != NULL){
+                del->data = del->next->data;
+                del->next = del->next->next;
+            }
+            else {
+                del->data = del->next->data;
+                del->next = NULL;
+            }
+        }else{
+            delete del;
+            del = NULL;
+        }
+
+    }
+    catch (const std::exception& e)
+    {
+        cout << e.what();
+    }
 }

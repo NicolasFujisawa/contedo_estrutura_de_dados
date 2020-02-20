@@ -32,6 +32,7 @@ int main()
         cout << ".2 display" << endl;
         cout << ".3 valor do index tal" << endl;
         cout << ".4 insira valor no index tal" << endl;
+        cout << ".5 delete pelo index" << endl;
         cout << ".0 Sair" << endl;
 
         cin >> option;
@@ -57,6 +58,10 @@ int main()
             cout << "index:";
             cin >> index;
             LinkedList::insertAt(list1->getHead(), valor, index);
+        case 5:
+            cout << "index:";
+            cin >> index;
+            list1->deleteAt(index);
         default:
             break;
         }

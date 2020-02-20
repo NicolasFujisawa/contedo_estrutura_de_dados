@@ -19,5 +19,5 @@ public:
 	static int valueAtIndex(node* head, int index, int count = 0 );
 	static node* nodeAtIndex(node* head, int index, int count = 0 );
 	static void insertAt(node* head, int value, int index);
-
+	void deleteAt(int index);
 };
