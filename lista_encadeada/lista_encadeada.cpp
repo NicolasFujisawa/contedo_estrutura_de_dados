@@ -21,13 +21,13 @@ int main()
     int option = -1, valor, index;
     //int input, output;
 
-    //lista encadeada
-    LinkedList* list1 = new LinkedList{};
+    //lista encadeada com cabeça
+    LinkedList* list1 = new LinkedList;
     LinkedList* list2 = new LinkedList{};
+       
 
     while (option != 0)
     {
-        cout << "=-=-=-Menu-=-=-=" << endl;
         cout << ".1 push back valor" << endl;
         cout << ".2 display" << endl;
         cout << ".3 valor do index tal" << endl;
@@ -42,7 +42,7 @@ int main()
         case 1:
             cout << "digite valor: ";
             cin >> valor;
-            list1->push_back_node(valor);
+            list1->push_back(valor);
             break;
         case 2:
             LinkedList::display(list1->getHead());
@@ -50,7 +50,7 @@ int main()
         case 3:
             cout << "index: ";
             cin >> index;
-            cout << LinkedList::valueAtIndex(list1->getHead(), index) << endl;
+            cout << LinkedList::at(list1->getHead(), index) << endl;
             break;
         case 4:
             cout << "valor:";
@@ -58,10 +58,15 @@ int main()
             cout << "index:";
             cin >> index;
             LinkedList::insertAt(list1->getHead(), valor, index);
+            break;
         case 5:
-            cout << "index:";
-            cin >> index;
-            list1->deleteAt(index);
+            cout << "value:";
+            cin >> valor;
+            LinkedList::push(list1->getHead(), valor);
+            break;
+        case 6:
+            //list1->pop();
+            LinkedList::display(list1->getHead());
         default:
             break;
         }

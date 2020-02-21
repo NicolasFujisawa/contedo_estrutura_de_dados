@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 struct node
 {
 	int data;
@@ -8,16 +9,17 @@ struct node
 class LinkedList
 {
 private:
-	node* head, * tail;
+	node* head;
 
 public:
 	void list();
-	void push_back_node(int value);
+	void push_back(int value);
+	static void push(node* node1, int value);
 	node* getHead();
 	static void display(node* head);
-	static void concatList(node* head1, node* head2);
-	static int valueAtIndex(node* head, int index, int count = 0 );
+	static int at(node* head, int index, int count = 0 );
 	static node* nodeAtIndex(node* head, int index, int count = 0 );
 	static void insertAt(node* head, int value, int index);
 	void deleteAt(int index);
+	void pop();
 };
