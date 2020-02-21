@@ -66,6 +66,13 @@ int main()
             cout << LinkedList::at(list->getHead(), index) << endl;
             break;
         case 6:
+            list->pop_back();
+            break;
+        case 7:
+            list->clear();
+            break;
+        case 8:
+            cout << LinkedList::size(list->getHead()) << endl;
             break;
         default:
             break;

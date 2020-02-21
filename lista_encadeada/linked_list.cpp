@@ -175,13 +175,51 @@ void LinkedList::deleteAt(int index) {
     }
 }
 
-void LinkedList::pop() {
-    node* temp = head;
+void LinkedList::pop_back() {
+    node* temp = new node;
+    node* prev = new node;
 
-    while (temp->next != NULL) {
-        temp = temp->next;
+    prev = head;
+    temp = head;
+    if (temp->next == NULL) {
+        head = NULL;
+        tail = NULL;
+        delete temp;
+        delete prev;
+    }
+    else {
+        while (temp->next != NULL) {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        tail = prev;
+        prev->next = NULL;
+        delete temp;
+    }
+}
+
+void LinkedList::clear(){
+    node* current = head;
+    node* next;
+
+    while (current != NULL)
+    {
+        next = current->next;
+        free(current);
+        current = next;
     }
 
-    delete temp;
-    temp = NULL;
+    head = NULL;
+    tail = NULL;
+}
+
+int LinkedList::size(node* head) {
+    if (head == NULL) {
+        return 0;
+    }
+    if (head->next == NULL) {
+        return 1;
+    }
+    return LinkedList::size(head->next) + 1;
 }

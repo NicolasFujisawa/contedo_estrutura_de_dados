@@ -15,11 +15,14 @@ public:
 	void list();
 	void push_back(int value);
 	void push(int value);
+	void pushAt(int value, int index);
 	node* getHead();
 	static void display(node* head);
 	static int at(node* head, int index, int count = 0 );
 	static node* nodeAtIndex(node* head, int index, int count = 0 );
-	void pushAt(int value, int index);
 	void deleteAt(int index);
-	void pop();
+	void pop_back();
+	void popAt(int index);
+	void clear();
+	static int size(node* head);
 };
