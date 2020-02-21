@@ -37,7 +37,7 @@ void LinkedList::display(node* head){
     node* temp = head;
     // printa ate o ultimo valor
     if (temp != NULL){
-        cout << temp->data << " -> ";
+        cout << temp->data << "->";
         LinkedList::display(temp->next);
     }
     else {
@@ -98,6 +98,11 @@ void LinkedList::pushAt(int value, int index) {
         tail = new_node;
     }
     else {
+        if (index == 0) {
+            new_node->next = head;
+            head = new_node;
+            return;
+        }
         temp = head;
         for (int i = 0; i < index - 1; i++){
             temp = temp->next;
