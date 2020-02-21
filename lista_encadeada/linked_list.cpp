@@ -5,6 +5,7 @@ using namespace std;
 
 void LinkedList::list() {
     head = NULL;
+    tail = NULL;
 }
 
 /***********************************************/
@@ -19,15 +20,11 @@ void LinkedList::push_back(int value) {
 
     if (head == NULL) {
         head = nod;
+        tail = nod;
     }
     else {
-        node* temp = head;
-
-        // percorre ate o temp chegar na ultima posicao
-        while (temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = nod;
+        tail->next = nod;
+        tail = nod;
     }
 }
 
@@ -37,11 +34,11 @@ node* LinkedList::getHead()
 }
 
 void LinkedList::display(node* head){
-
+    node* temp = head;
     // printa ate o ultimo valor
-    if (head != NULL){
-        cout << head->data << ", ";
-        LinkedList::display(head->next);
+    if (temp != NULL){
+        cout << temp->data << " -> ";
+        LinkedList::display(temp->next);
     }
     else {
         cout << endl;
@@ -90,24 +87,47 @@ node* LinkedList::nodeAtIndex(node* head1, int index, int count) {
 *   insere valor antes do node com index passado
 */
 /***********************************************/
-void LinkedList::insertAt(node* head, int value, int index) {
-    if (index == 0) {
-        LinkedList::push(head, value);
+void LinkedList::pushAt(int value, int index) {
+    node* new_node = new node;
+    node* temp = new node;
+    new_node->data = value;
+    new_node->next = NULL;
+
+    if (head == NULL) {
+        head = new_node;
+        tail = new_node;
+    }
+    else {
+        temp = head;
+        for (int i = 0; i < index - 1; i++){
+            temp = temp->next;
+        }
+
+        if (temp->next == NULL) {
+            temp->next = new_node;
+            tail = new_node;
+        }
+        else {
+            new_node->next = temp->next;
+            temp->next = new_node;
+        }
     }
 }
 
-void LinkedList::push(node * node1, int value) {
-    node* nod = new node;
-    nod->data = value;
-    nod->next = NULL;
+void LinkedList::push(int value) {
+    node* temp = new node;
+    temp->data = value;
+    temp->next = NULL;
 
-    if (node1 == NULL) {
-        node1 = nod;
+    if (head == NULL) {
+        head = temp;
+        tail = temp;
     }
     else {
-        nod->next = node1->next;
-        node1->next = nod;
+        temp->next = head;
+        head = temp;
     }
+
 }
 
 /***********************************************/

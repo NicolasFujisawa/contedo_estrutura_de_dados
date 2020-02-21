@@ -18,21 +18,22 @@ using namespace std;
 int main()
 {
     //menu
-    int option = -1, valor, index;
-    //int input, output;
+    int option = -1, value, index;
 
     //lista encadeada com cabeça
-    LinkedList* list1 = new LinkedList;
-    LinkedList* list2 = new LinkedList{};
-       
+    LinkedList* list = new LinkedList;
 
+    vector<int> array;
     while (option != 0)
     {
-        cout << ".1 push back valor" << endl;
-        cout << ".2 display" << endl;
-        cout << ".3 valor do index tal" << endl;
-        cout << ".4 insira valor no index tal" << endl;
-        cout << ".5 delete pelo index" << endl;
+        cout << ".1 push back" << endl;
+        cout << ".2 push_at" << endl;
+        cout << ".3 push" << endl;
+        cout << ".4 display" << endl;
+        cout << ".5 at" << endl;
+        cout << ".6 pop_back" << endl;
+        cout << ".7 pop_at" << endl;
+        cout << ".8 pop" << endl;
         cout << ".0 Sair" << endl;
 
         cin >> option;
@@ -41,32 +42,31 @@ int main()
         {
         case 1:
             cout << "digite valor: ";
-            cin >> valor;
-            list1->push_back(valor);
+            cin >> value;
+            list->push_back(value);
             break;
         case 2:
-            LinkedList::display(list1->getHead());
-            break;
-        case 3:
-            cout << "index: ";
-            cin >> index;
-            cout << LinkedList::at(list1->getHead(), index) << endl;
-            break;
-        case 4:
             cout << "valor:";
-            cin >> valor;
+            cin >> value;
             cout << "index:";
             cin >> index;
-            LinkedList::insertAt(list1->getHead(), valor, index);
+            list->pushAt(value, index);
+            break;
+        case 3:
+            cout << "digite valor: ";
+            cin >> value;
+            list->push(value);
+            break;
+        case 4:
+            LinkedList::display(list->getHead());
             break;
         case 5:
-            cout << "value:";
-            cin >> valor;
-            LinkedList::push(list1->getHead(), valor);
+            cout << "index: ";
+            cin >> index;
+            cout << LinkedList::at(list->getHead(), index) << endl;
             break;
         case 6:
-            //list1->pop();
-            LinkedList::display(list1->getHead());
+            break;
         default:
             break;
         }
