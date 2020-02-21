@@ -33,7 +33,8 @@ int main()
         cout << ".5 at" << endl;
         cout << ".6 pop_back" << endl;
         cout << ".7 pop_at" << endl;
-        cout << ".8 pop" << endl;
+        cout << ".8 clear" << endl;
+        cout << ".9 size" << endl;
         cout << ".0 Sair" << endl;
 
         cin >> option;
@@ -69,9 +70,14 @@ int main()
             list->pop_back();
             break;
         case 7:
-            list->clear();
+            cout << "index";
+            cin >> index;
+            list->deleteAt(index);
             break;
         case 8:
+            list->clear();
+            break;
+        case 9:
             cout << LinkedList::size(list->getHead()) << endl;
             break;
         default:
