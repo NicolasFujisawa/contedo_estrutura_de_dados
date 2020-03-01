@@ -3,42 +3,31 @@
 
 using namespace std;
 
-void LinkedList::list() {
-    head = NULL;
-    tail = NULL;
-}
 
 /***********************************************/
 /*
 *   insere um node no ultimo local
 */
 /***********************************************/
-void LinkedList::push_back(int value) {
+void LinkedList::push_back(node* head, int value) {
     node* nod = new node;
     nod->data = value;
     nod->next = NULL;
+    
+    while (head->next){
+        head = head->next;
+    }
 
-    if (head == NULL) {
-        head = nod;
-        tail = nod;
-    }
-    else {
-        tail->next = nod;
-        tail = nod;
-    }
+    head->next = nod;
 }
 
-node* LinkedList::getHead()
-{
-    return head;
-}
 
 void LinkedList::display(node* head){
-    node* temp = head;
+    node* temp = head->next;
     // printa ate o ultimo valor
-    if (temp != NULL){
+    if (temp){
         cout << temp->data << "->";
-        LinkedList::display(temp->next);
+        LinkedList::display(temp);
     }
     else {
         cout << endl;
@@ -50,13 +39,13 @@ void LinkedList::display(node* head){
 *   retorna valor do index
 */
 /***********************************************/
-int LinkedList::at(node* head1, int index, int count) {
+int LinkedList::at(node* head, int index, int count) {
     count++;
-    if (count <= index && head1->next != NULL) {
-        return LinkedList::at(head1->next, index, count);
+    if (count <= index && head->next != NULL) {
+        return LinkedList::at(head->next, index, count);
     }
     else {
-        return head1->data;
+        return head->data;
     }
 }
 
@@ -65,20 +54,13 @@ int LinkedList::at(node* head1, int index, int count) {
 *   retorna node do index
 */
 /***********************************************/
-node* LinkedList::nodeAtIndex(node* head1, int index, int count) {
+node* LinkedList::nodeAtIndex(node* head, int index, int count) {
     count++;
-    if (head1 != NULL) {
-        if (count <= index) {
-            if (head1->next != NULL) {
-                return LinkedList::nodeAtIndex(head1->next, index, count);
-            }
-            else {
-                return head1;
-            }
-        }
-        else {
-            return head1;
-        }
+    if (head != NULL && count <= index && head->next != NULL) {
+        return LinkedList::nodeAtIndex(head->next, index, count);
+    }
+    else {
+        return head;
     }
 }
 
@@ -87,52 +69,25 @@ node* LinkedList::nodeAtIndex(node* head1, int index, int count) {
 *   insere valor antes do node com index passado
 */
 /***********************************************/
-void LinkedList::pushAt(int value, int index) {
+void LinkedList::pushAt(node* head, int value, int index) {
     node* new_node = new node;
-    node* temp = new node;
     new_node->data = value;
-    new_node->next = NULL;
-
-    if (head == NULL) {
-        head = new_node;
-        tail = new_node;
+    
+    for (int i = 0; i < index; i++){
+        if (!head->next)continue;
+        head = head->next;
     }
-    else {
-        if (index == 0) {
-            new_node->next = head;
-            head = new_node;
-            return;
-        }
-        temp = head;
-        for (int i = 0; i < index - 1; i++){
-            temp = temp->next;
-        }
+    
+    new_node->next = head->next;
+    head->next = new_node;
 
-        if (temp->next == NULL) {
-            temp->next = new_node;
-            tail = new_node;
-        }
-        else {
-            new_node->next = temp->next;
-            temp->next = new_node;
-        }
-    }
 }
 
-void LinkedList::push(int value) {
+void LinkedList::push(node* head, int value) {
     node* temp = new node;
     temp->data = value;
-    temp->next = NULL;
-
-    if (head == NULL) {
-        head = temp;
-        tail = temp;
-    }
-    else {
-        temp->next = head;
-        head = temp;
-    }
-
+    temp->next = head->next;
+    head->next = temp;
 }
 
 /***********************************************/
@@ -140,79 +95,72 @@ void LinkedList::push(int value) {
 *   delete o endereco do index
 */
 /***********************************************/
-void LinkedList::deleteAt(int index) {
-    try
-    {
-        node* del = head;
+//void LinkedList::deleteAt(int index) {
+//    try
+//    {
+//        node* del = head;
+//
+//        for (int i = 0; i < index; i++)
+//        {
+//            if (del->next != NULL) {
+//                del = del->next;
+//            }
+//            else {
+//                return;
+//            }
+//        }
+//        if (del->next != NULL) {
+//            if(del->next->next != NULL){
+//                del->data = del->next->data;
+//                del->next = del->next->next;
+//            }
+//            else {
+//                del->data = del->next->data;
+//                del->next = NULL;
+//            }
+//        }else{
+//            delete del;
+//            del = NULL;
+//        }
+//
+//    }
+//    catch (const std::exception& e)
+//    {
+//        cout << e.what();
+//    }
+//}
 
-        for (int i = 0; i < index; i++)
-        {
-            if (del->next != NULL) {
-                del = del->next;
-            }
-            else {
-                return;
-            }
-        }
-        if (del->next != NULL) {
-            if(del->next->next != NULL){
-                del->data = del->next->data;
-                del->next = del->next->next;
-            }
-            else {
-                del->data = del->next->data;
-                del->next = NULL;
-            }
-        }else{
-            delete del;
-            del = NULL;
-        }
-
-    }
-    catch (const std::exception& e)
-    {
-        cout << e.what();
-    }
-}
-
-void LinkedList::pop_back() {
-    node* temp = new node;
-    node* prev = new node;
-
-    prev = head;
-    temp = head;
-    if (temp->next == NULL) {
-        head = NULL;
-        tail = NULL;
-        delete temp;
-        delete prev;
-    }
-    else {
-        while (temp->next != NULL) {
-            prev = temp;
-            temp = temp->next;
-        }
-
-        tail = prev;
-        prev->next = NULL;
-        delete temp;
-    }
-}
-
-void LinkedList::clear(){
-    node* current = head;
-    node* next;
-
-    while (current != NULL)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-
-    head = NULL;
-    tail = NULL;
-}
+//void LinkedList::pop_back() {
+//    node* temp = new node;
+//    node* prev = new node;
+//
+//    if (temp->next == NULL) {
+//        head = NULL;
+//        delete temp;
+//        delete prev;
+//    }
+//    else {
+//        while (temp->next != NULL) {
+//            prev = temp;
+//            temp = temp->next;
+//        }
+//
+//        prev->next = NULL;
+//        delete temp;
+//    }
+//}
+//
+//void LinkedList::clear(){
+//    node* next;
+//
+//    {
+//        next = current->next;
+//        free(current);
+//        current = next;
+//    }
+//
+//    head = NULL;
+//}
 
 int LinkedList::size(node* head) {
     if (head == NULL) {

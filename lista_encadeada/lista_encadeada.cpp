@@ -23,6 +23,9 @@ int main()
     //lista encadeada com cabeça
     LinkedList* list = new LinkedList;
 
+    node* head = new node;
+    head->next = NULL;
+
     vector<int> array;
     while (option != 0)
     {
@@ -44,41 +47,36 @@ int main()
         case 1:
             cout << "digite valor: ";
             cin >> value;
-            list->push_back(value);
+            LinkedList::push_back(head, value);
             break;
         case 2:
             cout << "valor:";
             cin >> value;
             cout << "index:";
             cin >> index;
-            list->pushAt(value, index);
+            list->pushAt(head, value, index);
             break;
         case 3:
             cout << "digite valor: ";
             cin >> value;
-            list->push(value);
+            list->push(head, value);
             break;
         case 4:
-            LinkedList::display(list->getHead());
+            LinkedList::display(head);
             break;
         case 5:
             cout << "index: ";
             cin >> index;
-            cout << LinkedList::at(list->getHead(), index) << endl;
             break;
         case 6:
-            list->pop_back();
             break;
         case 7:
             cout << "index";
             cin >> index;
-            list->deleteAt(index);
             break;
         case 8:
-            list->clear();
             break;
         case 9:
-            cout << LinkedList::size(list->getHead()) << endl;
             break;
         default:
             break;
