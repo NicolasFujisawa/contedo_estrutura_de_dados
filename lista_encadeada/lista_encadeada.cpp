@@ -35,8 +35,8 @@ int main()
         cout << ".4 display" << endl;
         cout << ".5 at" << endl;
         cout << ".6 pop_back" << endl;
-        cout << ".7 pop_at" << endl;
-        cout << ".8 clear" << endl;
+        cout << ".7 pop" << endl;
+        cout << ".8 pop_at" << endl;
         cout << ".9 size" << endl;
         cout << ".0 Sair" << endl;
 
@@ -54,12 +54,12 @@ int main()
             cin >> value;
             cout << "index:";
             cin >> index;
-            list->pushAt(head, value, index);
+            LinkedList::push_at(head, value, index);
             break;
         case 3:
             cout << "digite valor: ";
             cin >> value;
-            list->push(head, value);
+            LinkedList::push(head, value);
             break;
         case 4:
             LinkedList::display(head);
@@ -67,16 +67,23 @@ int main()
         case 5:
             cout << "index: ";
             cin >> index;
+            cout << "value: " << LinkedList::at(head, index) << endl;
             break;
         case 6:
+            LinkedList::pop_back(head);
+            LinkedList::display(head);
             break;
         case 7:
-            cout << "index";
-            cin >> index;
+            LinkedList::pop(head);
+            LinkedList::display(head);
             break;
         case 8:
+            cin >> index;
+            LinkedList::pop_at(head, index);
+            LinkedList::display(head);
             break;
         case 9:
+            cout << "size: " << LinkedList::size(head) << endl;
             break;
         default:
             break;

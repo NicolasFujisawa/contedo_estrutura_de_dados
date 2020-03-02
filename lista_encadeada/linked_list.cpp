@@ -41,26 +41,12 @@ void LinkedList::display(node* head){
 /***********************************************/
 int LinkedList::at(node* head, int index, int count) {
     count++;
-    if (count <= index && head->next != NULL) {
-        return LinkedList::at(head->next, index, count);
+    node* temp = head->next;
+    if (count <= index && temp) {
+        return LinkedList::at(temp, index, count);
     }
     else {
-        return head->data;
-    }
-}
-
-/***********************************************/
-/*
-*   retorna node do index
-*/
-/***********************************************/
-node* LinkedList::nodeAtIndex(node* head, int index, int count) {
-    count++;
-    if (head != NULL && count <= index && head->next != NULL) {
-        return LinkedList::nodeAtIndex(head->next, index, count);
-    }
-    else {
-        return head;
+        return temp->data;
     }
 }
 
@@ -69,9 +55,10 @@ node* LinkedList::nodeAtIndex(node* head, int index, int count) {
 *   insere valor antes do node com index passado
 */
 /***********************************************/
-void LinkedList::pushAt(node* head, int value, int index) {
+void LinkedList::push_at(node* head, int value, int index) {
     node* new_node = new node;
     new_node->data = value;
+    new_node->next = NULL;
     
     for (int i = 0; i < index; i++){
         if (!head->next)continue;
@@ -95,78 +82,59 @@ void LinkedList::push(node* head, int value) {
 *   delete o endereco do index
 */
 /***********************************************/
-//void LinkedList::deleteAt(int index) {
-//    try
-//    {
-//        node* del = head;
-//
-//        for (int i = 0; i < index; i++)
-//        {
-//            if (del->next != NULL) {
-//                del = del->next;
-//            }
-//            else {
-//                return;
-//            }
-//        }
-//        if (del->next != NULL) {
-//            if(del->next->next != NULL){
-//                del->data = del->next->data;
-//                del->next = del->next->next;
-//            }
-//            else {
-//                del->data = del->next->data;
-//                del->next = NULL;
-//            }
-//        }else{
-//            delete del;
-//            del = NULL;
-//        }
-//
-//    }
-//    catch (const std::exception& e)
-//    {
-//        cout << e.what();
-//    }
-//}
+void LinkedList::pop_back(node* head) { /* exclui da memoria o ultimo elemento da lista */
+    if (!head->next) return; /* se n tiver sido inicialidaza, volta */
 
-//void LinkedList::pop_back() {
-//    node* temp = new node;
-//    node* prev = new node;
-//
-//    if (temp->next == NULL) {
-//        head = NULL;
-//        delete temp;
-//        delete prev;
-//    }
-//    else {
-//        while (temp->next != NULL) {
-//            prev = temp;
-//            temp = temp->next;
-//        }
-//
-//        prev->next = NULL;
-//        delete temp;
-//    }
-//}
-//
-//void LinkedList::clear(){
-//    node* next;
-//
-//    {
-//        next = current->next;
-//        free(current);
-//        current = next;
-//    }
-//
-//    head = NULL;
-//}
+    while (head->next->next) { /* percorre ate o penultimo elemento */
+        head = head->next;
+    }
+
+    free(head->next); /* libera a ultima memoria */
+    head->next = NULL;
+}
+
+void LinkedList::pop(node* head) {
+    if (!head->next) return;
+
+    if (!head->next->next) { /* verifica se e o ultimo */
+        free(head->next);
+        head->next = NULL;
+    }
+    else { /* conecta o end next com o node next.next */
+        node* temp = head->next;
+        head->next = head->next->next;
+        free(temp);
+        temp = NULL;
+    }
+}
+
+void LinkedList::pop_at(node* head, int index, int count) {
+    if (!head->next) return;
+    if (!index >= LinkedList::size(head)) index = LinkedList::size(head) - 1;
+    cout << "idx: " << index << endl;
+
+
+    node* temp = new node;
+    temp = head->next;
+
+    while (count < index) {
+        head = temp;
+        temp = temp->next;
+        count++;
+    }
+    cout << "prev: " << head->data <<" temp: " << temp->data << endl;
+    head->next = temp->next;
+    
+    free(temp);
+    temp = NULL;
+
+}
 
 int LinkedList::size(node* head) {
-    if (head == NULL) {
+    if (head->next == NULL) {
         return 0;
     }
-    if (head->next == NULL) {
+    if (head->next->next == NULL) {
         return 1;
     }
     return LinkedList::size(head->next) + 1;
