@@ -1,5 +1,4 @@
 #pragma once
-#include<iostream>
 struct node
 {
 	int data;
@@ -18,6 +17,5 @@ public:
 	static void pop_back(node* head);
 	static void pop(node* head);
 	static void pop_at(node* head, int index, int count = 0);
-	static void clear(node* head);
 	static int size(node* head);
 };

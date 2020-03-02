@@ -4,6 +4,8 @@
 
 // liked list
 #include "linked_list.h"
+#include "linked_list2.h"
+#include "param_model.h"
 
 using namespace std;
 
@@ -21,10 +23,14 @@ int main()
     int option = -1, value, index;
 
     //lista encadeada com cabeça
-    LinkedList* list = new LinkedList;
-
     node* head = new node;
     head->next = NULL;
+
+    //lista encadeada sem cabeca
+    node* curr = new node;
+
+
+    List::Option type = List::Option::HEAD;
 
     vector<int> array;
     while (option != 0)
@@ -42,51 +48,77 @@ int main()
 
         cin >> option;
 
-        switch (option)
-        {
-        case 1:
-            cout << "digite valor: ";
-            cin >> value;
-            LinkedList::push_back(head, value);
-            break;
-        case 2:
-            cout << "valor:";
-            cin >> value;
-            cout << "index:";
-            cin >> index;
-            LinkedList::push_at(head, value, index);
-            break;
-        case 3:
-            cout << "digite valor: ";
-            cin >> value;
-            LinkedList::push(head, value);
-            break;
-        case 4:
-            LinkedList::display(head);
-            break;
-        case 5:
-            cout << "index: ";
-            cin >> index;
-            cout << "value: " << LinkedList::at(head, index) << endl;
-            break;
-        case 6:
-            LinkedList::pop_back(head);
-            LinkedList::display(head);
-            break;
-        case 7:
-            LinkedList::pop(head);
-            LinkedList::display(head);
-            break;
-        case 8:
-            cin >> index;
-            LinkedList::pop_at(head, index);
-            LinkedList::display(head);
-            break;
-        case 9:
-            cout << "size: " << LinkedList::size(head) << endl;
-            break;
-        default:
-            break;
+        if (type == List::Option::HEAD) {
+            switch (option) {
+            case 1:
+                cout << "digite valor: ";
+                cin >> value;
+                LinkedList::push_back(head, value);
+                break;
+            case 2:
+                cout << "valor:";
+                cin >> value;
+                cout << "index:";
+                cin >> index;
+                LinkedList::push_at(head, value, index);
+                break;
+            case 3:
+                cout << "digite valor: ";
+                cin >> value;
+                LinkedList::push(head, value);
+                break;
+            case 4:
+                LinkedList::display(head);
+                break;
+            case 5:
+                cout << "index: ";
+                cin >> index;
+                cout << "value: " << LinkedList::at(head, index) << endl;
+                break;
+            case 6:
+                LinkedList::pop_back(head);
+                LinkedList::display(head);
+                break;
+            case 7:
+                LinkedList::pop(head);
+                LinkedList::display(head);
+                break;
+            case 8:
+                cin >> index;
+                LinkedList::pop_at(head, index);
+                LinkedList::display(head);
+                break;
+            case 9:
+                cout << "size: " << LinkedList::size(head) << endl;
+                break;
+            default:
+                break;
+            }
+        }
+        else { /* lista encadeada sem cabeca */
+            switch (option) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+
+            default:
+                break;
+            }
         }
     }
 }

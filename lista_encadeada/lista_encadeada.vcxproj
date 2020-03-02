@@ -150,10 +150,12 @@
     <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="linked_list2.cpp" />
     <ClCompile Include="lista_encadeada.cpp" />
+    <ClCompile Include="param_model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="linked_list2.h" />
+    <ClInclude Include="param_model.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
