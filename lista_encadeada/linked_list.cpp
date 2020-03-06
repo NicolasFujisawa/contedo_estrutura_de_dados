@@ -139,3 +139,49 @@ int LinkedList::size(node* head) {
     }
     return LinkedList::size(head->next) + 1;
 }
+
+// sem cabeca
+
+void LinkedList::display_simple(node* head) {
+    // printa ate o ultimo valor
+    node* temp;
+    for (temp = head; temp != NULL; temp = temp->next)
+    {
+        cout << temp->data << "->";
+    }
+    cout << endl;
+}
+
+void LinkedList::push_back_simple(node* curr, int value) {
+    node* temp = new node;
+    temp->data = value;
+    temp->next = NULL;
+
+    if (!curr) {
+        LinkedList::push_simple(&curr, value);
+        cout << "1";
+        return;
+    }
+    cout << "2";
+    while (curr) {
+        curr = curr->next;
+    }
+    
+    curr->next = temp;
+
+}
+
+void LinkedList::push_simple(node** curr, int value) {
+    node* temp = new node;
+    temp->data = value;
+
+    temp->next = *curr;
+    *curr = temp;
+}
+
+void LinkedList::pop_simple(node** temp) {
+    node* toPop;
+    toPop = *temp;
+    *temp = (*temp)->next;
+    free(toPop);
+}
