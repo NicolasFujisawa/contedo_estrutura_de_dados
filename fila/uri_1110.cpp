@@ -67,7 +67,6 @@ int throwingCardsAway(int number, vector<int>* discarted) {
 
         queue.pop_back();
     }
-
 }
 
 void display(int remaing, vector<int> discarted) {
@@ -83,7 +82,7 @@ void display(int remaing, vector<int> discarted) {
     cout << "Remaining card: " << remaing << endl;
 }
 
-int main() {
+int main2() {
     cout << "Hello User!\nInsert a amount of cards:";
 
     int input, remaining;

@@ -163,7 +163,7 @@ void LinkedList::push_back_simple(node* curr, int value) {
         return;
     }
     cout << "2";
-    while (curr) {
+    while (curr->next) {
         curr = curr->next;
     }
     
