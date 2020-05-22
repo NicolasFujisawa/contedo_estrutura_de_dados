@@ -6,7 +6,7 @@ using namespace std;
 
 /***********************************************/
 /*
-*   insere um node no ultimo local
+*   insere um Node no ultimo local
 */
 /***********************************************/
 void LinkedList::push_back(node* head, int value) {
@@ -52,7 +52,7 @@ int LinkedList::at(node* head, int index, int count) {
 
 /***********************************************/
 /*
-*   insere valor antes do node com index passado
+*   insere valor antes do Node com index passado
 */
 /***********************************************/
 void LinkedList::push_at(node* head, int value, int index) {
@@ -100,7 +100,7 @@ void LinkedList::pop(node* head) {
         free(head->next);
         head->next = NULL;
     }
-    else { /* conecta o end next com o node next.next */
+    else { /* conecta o end next com o Node next.next */
         node* temp = head->next;
         head->next = head->next->next;
         free(temp);
