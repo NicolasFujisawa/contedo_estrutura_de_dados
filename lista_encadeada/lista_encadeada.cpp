@@ -4,7 +4,6 @@
 
 // liked list
 #include "linked_list.h"
-#include "linked_list2.h"
 #include "param_model.h"
 
 using namespace std;
@@ -27,10 +26,11 @@ int main()
     head->next = NULL;
 
     //lista encadeada sem cabeca
-    node* curr = new node;
+    node* curr;
+    curr = NULL;
+    
 
-
-    List::Option type = List::Option::HEAD;
+    List::Option type = List::Option::SIMPLE;
 
     vector<int> array;
     while (option != 0)
@@ -98,18 +98,26 @@ int main()
         else { /* lista encadeada sem cabeca */
             switch (option) {
             case 1:
+                cin >> value;
+                LinkedList::push_back_simple(curr, value);
                 break;
             case 2:
+
                 break;
             case 3:
+                cout << "digite valor: ";
+                cin >> value;
+                LinkedList::push_simple(&curr, value);
                 break;
             case 4:
+                LinkedList::display_simple(curr);
                 break;
             case 5:
                 break;
             case 6:
                 break;
             case 7:
+                LinkedList::pop_simple(&curr);
                 break;
             case 8:
                 break;
