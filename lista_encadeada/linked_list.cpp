@@ -3,22 +3,26 @@
 
 using namespace std;
 
-
+struct node {
+    int data;
+    node* next;
+};
 /***********************************************/
 /*
 *   insere um Node no ultimo local
 */
 /***********************************************/
 void LinkedList::push_back(node* head, int value) {
-    node* nod = new node;
-    nod->data = value;
-    nod->next = NULL;
     
-    while (head->next){
-        head = head->next;
+    node* nod = new node; /* [  |]-> */
+    nod->data = value; /* [value |]-> */
+    nod->next = NULL; /* [value |]->NULL */
+    
+    while (head->next){ /* [  |]->[1 |]->[2 |]->[3 |]->NULL */
+        head = head->next; /* [3 |]->NULL */
     }
 
-    head->next = nod;
+    head->next = nod; /* [  |]->[1 |]->[2 |]->[3 |]->[value |]->NULL */
 }
 
 
