@@ -85,7 +85,7 @@ string infixaParaPosfixa(string infix) { /*  (A+B*(C-D*(E-F)-G*H)-I*3)  */
             push(infix[i], pilha); /* empilha */
             break;
         case ')': 
-            while (true) { /* desempilha */
+            while (true) { /* desempilha até '(' */
                 x = pop(pilha);
                 if (x == '(') 
                     break;
@@ -97,8 +97,7 @@ string infixaParaPosfixa(string infix) { /*  (A+B*(C-D*(E-F)-G*H)-I*3)  */
             while (true) { /* desempilha até antes do '(' */
                 x = top(pilha);
                 if (x == '(') break;
-                pop(pilha);
-                posfix += x;
+                posfix += pop(pilha);
             }
             push(infix[i], pilha); /* empilha '-' ou '+' */
             break;
@@ -108,8 +107,7 @@ string infixaParaPosfixa(string infix) { /*  (A+B*(C-D*(E-F)-G*H)-I*3)  */
                 x = top(pilha);
                 if (x == '(' || x == '+' || x == '-')
                     break;
-                pop(pilha);
-                push(x, pilha);
+                posfix += pop(pilha);
             }
             push(infix[i], pilha);
             break;
