@@ -7,15 +7,6 @@
 #include "param_model.h"
 
 using namespace std;
-
-/*1 - Faça uma função para concatenar duas listas encadeadas
-
-2 - Faça uma função para remover elementos repetidos de uma lista encadeada (apenas uma varredura).
-
-3 - Faça uma função que converta um vetor em lista encadeada (mantenha a ordem)
-
-4 - Faça uma função para intercalar duas listas encadeadas*/
-
 int main()
 {
     //menu
@@ -23,12 +14,11 @@ int main()
 
     //lista encadeada com cabeça
     node* head = new node;
-    head->next = NULL;
-
+    head->next = NULL; /* [  |]->NULL */
+  
     //lista encadeada sem cabeca
     node* curr;
-    curr = NULL;
-    
+    curr = NULL; /* NULL */
 
     List::Option type = List::Option::SIMPLE;
 

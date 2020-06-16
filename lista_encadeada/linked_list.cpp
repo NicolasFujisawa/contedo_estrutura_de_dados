@@ -3,22 +3,26 @@
 
 using namespace std;
 
-
+struct node {
+    int data;
+    node* next;
+};
 /***********************************************/
 /*
-*   insere um node no ultimo local
+*   insere um Node no ultimo local
 */
 /***********************************************/
 void LinkedList::push_back(node* head, int value) {
-    node* nod = new node;
-    nod->data = value;
-    nod->next = NULL;
     
-    while (head->next){
-        head = head->next;
+    node* nod = new node; /* [  |]-> */
+    nod->data = value; /* [value |]-> */
+    nod->next = NULL; /* [value |]->NULL */
+    
+    while (head->next){ /* [  |]->[1 |]->[2 |]->[3 |]->NULL */
+        head = head->next; /* [3 |]->NULL */
     }
 
-    head->next = nod;
+    head->next = nod; /* [  |]->[1 |]->[2 |]->[3 |]->[value |]->NULL */
 }
 
 
@@ -52,7 +56,7 @@ int LinkedList::at(node* head, int index, int count) {
 
 /***********************************************/
 /*
-*   insere valor antes do node com index passado
+*   insere valor antes do Node com index passado
 */
 /***********************************************/
 void LinkedList::push_at(node* head, int value, int index) {
@@ -100,7 +104,7 @@ void LinkedList::pop(node* head) {
         free(head->next);
         head->next = NULL;
     }
-    else { /* conecta o end next com o node next.next */
+    else { /* conecta o end next com o Node next.next */
         node* temp = head->next;
         head->next = head->next->next;
         free(temp);

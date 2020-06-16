@@ -1,78 +1,102 @@
 ﻿#include <iostream>
 #include <vector>
-
 using namespace std;
 
-struct node {
-    int data;
-    node* next;
-};
+namespace edd {
+    template<class T>
+    class Queue { /* First in Last out */
+    private:
+        T* container;
+        int front; //s
+        int back; 
+        size_t size;
+    public:
+        /* define size */
+        Queue(size_t size) : front(0), back(0), size(size) {
+            container = new T[size];
+        }
 
-void push(int value, node** head, node** tail) {
-    node* newe = new node;
-    newe->data = value;
-    newe->next = NULL;
+        void push(T data) {
+            cout << "push: " << data << endl;
+            if (back >= size) {
+                back = 0;
+            }
+            container[back++] = data;
+        }
 
-    if (*head == NULL) {
-        *tail = *head = newe;
-    }
-    else {
-        (*tail)->next = newe;
-        *tail = newe;
-    }
+        T pop() {
+            cout << "pop: " << container[front] << endl;
+            if (front >= size) {
+                front = 0;
+            }
+            return container[front++];
+        }
+
+        bool operator==(bool boolean) const {
+            //cout << front << " " << back << endl;
+            if (front == back) {
+                return !boolean;
+            }
+            return boolean;
+        }
+
+    };
 }
+using namespace edd;
 
-void display_simple(node* head) {
-    // printa ate o ultimo valor
-    node* temp;
-    for (temp = head; temp != NULL; temp = temp->next)
-    {
-        cout << temp->data << "->";
+int* distancias(int n, int A[6][6], int o) {
+    int* d, x, y;
+    Queue<int> queue(n);
+    d = new int[n];
+    for (x = 0; x < n; x++) {
+        d[x] = -1;
     }
-    cout << endl;
-}
-
-int pop(node** head, node** tail) {
-    node* newe = new node;
-    int x;
-    newe = *head;
-
-    x = newe->data;
-    *head = newe->next;
-    free(newe);
-    if (*head == NULL) {
-        *tail = NULL;
+    d[o] = 0;
+    //processo iterativo
+    queue.push(o);
+    while (queue == true) {
+        x = queue.pop(); /* x sai da fila */
+        for (y = 0; y < n; y++) {
+            if (A[x][y] == 1 && d[y] == -1) {
+                d[y] = d[x] + 1;
+                queue.push(y); /* y entra na fila */
+            }
+        }
     }
-    return x;
+    return d;
 }
 
 int main() {
-    cout << "Hello User\n";
-    node* head, * tail;
-    head = NULL;
-    tail = NULL;
+    
+    Queue<int> queue(10);
 
-    int map[6][6];
-
-    for (int i = 0; i < 6; i++)
-    {
-        for (int j = 0; j < 6; j++)
-        {
-            map[i][j] = 0;
-        }
+    queue.push(10);
+    queue.push(20);
+    if (queue == true) {
+        cout << "nao esta vazia" << endl;
     }
-    map[0][1] = 1;
-    map[1][2] = 1;
-    map[2][4] = 1;
-    map[3][2] = 1;
-    map[3][4] = 1;
-    map[4][0] = 1;
-    map[5][1] = 1;
+    queue.pop(); // 10
+    queue.pop(); // 20
 
-    /*push(111, &head, &tail);
-    push(222, &head, &tail);
-    push(333, &head, &tail);
-    push(444, &head, &tail);
-    pop(&head, &tail);  
-    display_simple(head);*/
+    /* distancias entre cidades */
+    int cidade[6][6]{ 0 };
+    cidade[4][0]++;
+    cidade[5][1]++;
+    cidade[0][1]++;
+    cidade[1][2]++;
+    cidade[2][4]++;
+    cidade[3][2]++;
+    cidade[3][4]++;
+    for (int x = 0; x < 6; x++) {
+        for (int y = 0; y < 6; y++) {
+            cout << cidade[x][y] << " " << flush;
+        }
+        cout << endl;
+    }
+    int* dist = distancias(6, cidade, 3);
+    for (int i = 0; i < 6;i++) {
+        cout << dist[i] << " " << flush;
+    }
+    
+    return 0;
 }
